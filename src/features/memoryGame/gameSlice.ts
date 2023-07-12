@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { shuffleCards } from '../../helpers/shuffleCards';
 
-interface Card {
+export interface Card {
   id: number;
   image: string;
   name: string;
@@ -35,28 +36,6 @@ const imageNames = [
   "Yoshi.png"
 ];
 
-// helper function to shuffle cards
-function shuffleArray(array: Card[], numItems?: number): Card[] {
-  let currentIndex = array.length, temporaryValue, randomIndex;
-
-  while (currentIndex !== 0) {
-    randomIndex = Math.floor(Math.random() * currentIndex);
-    currentIndex -= 1;
-
-    temporaryValue = array[currentIndex];
-    array[currentIndex] = array[randomIndex];
-    array[randomIndex] = temporaryValue;
-  }
-
-  // If numItems is provided, return the specified number of items.
-  if (numItems) {
-    return array.slice(0, numItems);
-  }
-
-  // Otherwise, return the whole array.
-  return array;
-}
-
 // array of all cards
 const fullDeck: Card[] = imageNames.map((imageName, i) => ({
   id: i,
@@ -67,7 +46,7 @@ const fullDeck: Card[] = imageNames.map((imageName, i) => ({
 
 const initialState: GameState = {
   fullDeck,
-  gameDeck: shuffleArray([...fullDeck], 9),
+  gameDeck: shuffleCards([...fullDeck], 6),
 };
 
 export const gameSlice = createSlice({
@@ -79,7 +58,7 @@ export const gameSlice = createSlice({
       if (card) card.facedUp = !card.facedUp;
     },
     newGame: (state) => {
-      state.gameDeck = shuffleArray([...fullDeck], 9);
+      state.gameDeck = shuffleCards([...fullDeck], 6);
     },
   },
 });

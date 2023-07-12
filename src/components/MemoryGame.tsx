@@ -6,6 +6,8 @@ export const MemoryGame = () => {
   const cards = useAppSelector((state) => state.game.gameDeck);
   const dispatch = useAppDispatch();
 
+  console.log(cards)
+
   return (
     <div className="card-container">
       {cards.map((card) => (
