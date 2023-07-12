@@ -1,9 +1,11 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
 import gameReducer from '../features/memoryGame/gameSlice';
+import controllerReducer from '../features/controller/controllerSlice';
 
 export const store = configureStore({
   reducer: {
     game: gameReducer,
+    controller: controllerReducer,
   },
 });
 
