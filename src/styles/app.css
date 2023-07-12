@@ -1,0 +1,7 @@
+.app {
+  display: flex;
+  flex-direction: column;
+  padding: 4rem;
+  height: calc(100vh - 8rem);
+  background-color: var(--mario-blue);
+}

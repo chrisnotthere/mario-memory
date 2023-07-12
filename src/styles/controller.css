@@ -1,0 +1,12 @@
+.controller {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 2rem;
+    background-color: var(--mario-red);
+    border-radius: 1rem 1rem 0 0;
+}
+

@@ -1,0 +1,14 @@
+:root {
+  --mario-red: #e52521;
+  --mario-blue: #a0d8eeb3;
+  --mario-green: #43b047;
+  --mario-yellow: #fbd000;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
+    "Droid Sans", "Helvetica Neue", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

@@ -1,8 +1,11 @@
-import { MemoryGame } from './features/memoryGame/MemoryGame';
+import Controller from "./components/Controller";
+import { MemoryGame } from "./components/MemoryGame";
+import "./styles/app.css";
 
 function App() {
   return (
-    <div className="App">
+    <div className="app">
+      <Controller />
       <MemoryGame />
     </div>
   );
