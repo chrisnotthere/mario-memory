@@ -1,5 +1,5 @@
-import Controller from "./components/Controller";
-import { MemoryGame } from "./components/MemoryGame";
+import Controller from "./components/Controller/Controller";
+import { MemoryGame } from "./components/MemoryGame/MemoryGame";
 import "./styles/app.css";
 
 function App() {

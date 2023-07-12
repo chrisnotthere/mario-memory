@@ -1,4 +1,4 @@
-import "../styles/controller.css";
+import "./controller.css";
 
 function Controller() {
   return (

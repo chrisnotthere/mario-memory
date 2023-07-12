@@ -1,4 +1,4 @@
-import { Card } from "../features/memoryGame/gameSlice";
+import { Card } from '../gameSlice'
 
 // This function will shuffle an array of cards and return an array of pairs
 export function shuffleCards<T extends Card>(array: T[], numItems: number): T[] {

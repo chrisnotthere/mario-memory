@@ -48,7 +48,7 @@
   /* background-color: red; */
 }
 
-.card-face-up {
-  /* transform: rotateY(180deg); */
-  /* background-color: blue; */
+.card-matched {
+  opacity: 0.3;
+  box-shadow: 0 0 10px rgb(217, 19, 19);
 }
