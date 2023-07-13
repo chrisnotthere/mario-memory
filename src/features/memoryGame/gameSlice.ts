@@ -95,6 +95,6 @@ export const gameSlice = createSlice({
   },
 });
 
-export const { setPendingFlip } = gameSlice.actions;
+export const { setPendingFlip, newGame } = gameSlice.actions;
 
 export default gameSlice.reducer;

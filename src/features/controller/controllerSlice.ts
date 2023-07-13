@@ -19,31 +19,32 @@ export const controllerSlice = createSlice({
     setGameStarted: (state, action: PayloadAction<boolean>) => {
       state.gameStarted = action.payload;
     },
-    setGameTimer: (state, action: PayloadAction<number>) => {
-      state.gameTimer = action.payload;
-    },
-    incrementGameTimer: (state) => {
-      state.gameTimer += 1;
-    },
     incrementMoves: (state) => {
       state.movesTaken += 1;
     },
     resetMoves: (state) => {
       state.movesTaken = 0;
     },
+    incrementTimer: (state) => {
+      state.gameTimer += 1;
+    },
+    resetTimer: (state) => {
+      state.gameTimer = 0;
+    },
     resetController: (state) => {
       state.gameStarted = false;
       state.gameTimer = 0;
+      state.movesTaken = 0;
     },
   },
 });
 
 export const {
   setGameStarted,
-  setGameTimer,
-  incrementGameTimer,
   incrementMoves,
   resetMoves,
+  incrementTimer,
+  resetTimer,
   resetController,
 } = controllerSlice.actions;
 
