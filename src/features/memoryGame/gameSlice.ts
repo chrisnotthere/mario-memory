@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { shuffleCards } from './helpers/shuffleCards';
+import { RootState } from '../../app/store';
 
 export interface Card {
   id: number;
@@ -53,6 +54,11 @@ const initialState: GameState = {
   gameDeck: shuffleCards([...fullDeck], 6),
   flippedCards: [],
   pendingFlip: null,
+};
+
+// a selector to check if every card in the game deck is matched
+export const selectIsGameFinished = (state: RootState) => {
+  return state.game.gameDeck.every((card) => card.matched);
 };
 
 export const gameSlice = createSlice({
