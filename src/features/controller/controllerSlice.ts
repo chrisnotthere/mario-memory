@@ -3,11 +3,13 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 interface ControllerState {
   gameStarted: boolean;
   gameTimer: number;
+  movesTaken: number;
 }
 
 const initialState: ControllerState = {
   gameStarted: false,
   gameTimer: 0,
+  movesTaken: 0,
 };
 
 export const controllerSlice = createSlice({
@@ -23,6 +25,12 @@ export const controllerSlice = createSlice({
     incrementGameTimer: (state) => {
       state.gameTimer += 1;
     },
+    incrementMoves: (state) => {
+      state.movesTaken += 1;
+    },
+    resetMoves: (state) => {
+      state.movesTaken = 0;
+    },
     resetController: (state) => {
       state.gameStarted = false;
       state.gameTimer = 0;
@@ -34,6 +42,8 @@ export const {
   setGameStarted,
   setGameTimer,
   incrementGameTimer,
+  incrementMoves,
+  resetMoves,
   resetController,
 } = controllerSlice.actions;
 

@@ -1,6 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { RootState } from '../../app/store';
 import { gameSlice, Card } from './gameSlice';
+import { controllerSlice } from '../controller/controllerSlice';
 
 // Thunks are used to handle async logic in Redux.
 // flipCardAndCheck handles the logic of flipping a card and checking if it matches another card.
@@ -21,6 +22,10 @@ export const flipCardAndCheck = createAsyncThunk<Card[], void, { state: RootStat
 
         // Check if there are two flipped cards
         if (newFlippedCards.length === 2) {
+
+          // Increment the number of moves taken
+          thunkAPI.dispatch(controllerSlice.actions.incrementMoves());
+
           // Get the two flipped cards
           const [firstCard, secondCard] = newFlippedCards;
 
