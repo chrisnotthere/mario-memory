@@ -9,3 +9,15 @@ declare module "*.svg" {
   const content: any;
   export default content;
 }
+
+// Handling PNG imports: Treats the imported PNG as any type
+declare module "*.png" {
+  const content: any;
+  export default content;
+}
+
+// Handling webp imports: Treats the imported webp as any type
+declare module "*.webp" {
+  const content: any;
+  export default content;
+}

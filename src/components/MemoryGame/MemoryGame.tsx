@@ -31,12 +31,12 @@ export const MemoryGame = () => {
           {card.facedUp ? (
             <img
               className="card-image"
-              src={`/${card.image}`}
+              src={card.image}
               alt={`Card ${card.id}`}
             />
           ) : (
             <img
-              src="/assets/images/block.webp"
+              src={`${process.env.PUBLIC_URL}/assets/images/block.webp`}
               alt="Mario Block"
               width={"80px"}
             />
