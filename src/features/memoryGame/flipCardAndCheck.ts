@@ -15,13 +15,17 @@ export const flipCardAndCheck = createAsyncThunk<Card[], void, { state: RootStat
       thunkAPI.dispatch(setGameStarted(true));
     }
 
-    // Check if there is a card that is about to be flipped
-    if (game.pendingFlip !== null) {
+    // Check if the card is not the same as the last flipped card
+    // This prevents the same card from being considered a match if it is clicked twice
+    if (game.pendingFlip !== null && game.pendingFlip !== game.lastFlippedCard) {
       // Find the card in the deck that matches the pending flip
       const cardToFlip = game.gameDeck.find(card => card.id === game.pendingFlip);
 
       // Check if the card to flip exists
       if (cardToFlip) {
+        // update the last flipped card
+        thunkAPI.dispatch(gameSlice.actions.setLastFlippedCard(cardToFlip.id)); 
+
         // Create a new array of flipped cards, adding the new card to flip
         const newFlippedCards = [...game.flippedCards, cardToFlip];
 

@@ -15,6 +15,7 @@ interface GameState {
   gameDeck: Card[]; // cards in play
   flippedCards: Card[]; // currently flipped cards
   pendingFlip: number | null; // id of card clicked but not processed yet
+  lastFlippedCard: number | null; // id of last card flipped
 }
 
 const imageNames = [
@@ -54,6 +55,7 @@ const initialState: GameState = {
   gameDeck: shuffleCards([...fullDeck], 6),
   flippedCards: [],
   pendingFlip: null,
+  lastFlippedCard: null,
 };
 
 // a selector to check if every card in the game deck is matched
@@ -74,7 +76,13 @@ export const gameSlice = createSlice({
       if (card) card.facedUp = !card.facedUp;
     },
     addFlippedCard: (state, action: PayloadAction<Card>) => {
-      state.flippedCards.push(action.payload);
+      // only add card to flippedCards if it is not already there
+      if (!state.flippedCards.some(card => card.id === action.payload.id)) {
+        state.flippedCards.push(action.payload);
+      }
+    },
+    setLastFlippedCard: (state, action: PayloadAction<number | null>) => {
+      state.lastFlippedCard = action.payload;
     },
     clearFlippedCards: (state) => {
       state.flippedCards = [];
