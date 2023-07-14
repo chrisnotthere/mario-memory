@@ -40,9 +40,14 @@ function Controller() {
   }
 
   // set gameFinished to true when all cards are matched
+  // log game stats to console
   useEffect(() => {
     if (gameFinished) {
       dispatch(setGameFinished(true));
+      console.log("Game Finished!")
+      console.log('here are your stats:')
+      console.log(`moves taken: ${movesTaken}`)
+      console.log(`time taken: ${gameTimer}`)
     }
   }, [gameFinished, dispatch]);
   
@@ -51,10 +56,10 @@ function Controller() {
       <div className="button-container">
         <button className="controller-button" onClick={handleReset}>Reset</button>
       </div>
+      { gameFinished && <div className="message">🥳 Congratulations! 🍾🍾</div> }
       <div className="stats-container">
         <div className="move-counter">{movesTaken} moves</div>
         <div className="timer">time: {gameTimer} seconds</div>
-        {gameFinished && <div className="game-finished">Game Finished!</div>}
       </div>
     </div>
   );
