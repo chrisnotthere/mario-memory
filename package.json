@@ -2,7 +2,7 @@
   "name": "mario-memory",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://chrisnotthere.github.io/mario-memory",
+  "homepage": "https://chrisnotthere.github.io/mario-memory",
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.5",
     "@testing-library/jest-dom": "^5.16.5",
