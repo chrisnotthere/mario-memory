@@ -1,14 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { shuffleCards } from './helpers/shuffleCards';
 import { RootState } from '../../app/store';
-
-export interface Card {
-  id: number;
-  image: string;
-  name: string;
-  facedUp: boolean;
-  matched: boolean;
-}
+import { imageNames } from './helpers/imageNames';
 
 interface GameState {
   fullDeck: Card[]; // all cards
@@ -18,33 +11,17 @@ interface GameState {
   lastFlippedCard: number | null; // id of last card flipped
 }
 
-const imageNames = [
-  "Bowser.png", 
-  "Daisy.png", 
-  "Donkey Kong.png", 
-  "Iggy.png", 
-  "Koopa Troopa.png", 
-  "Lakitu.png", 
-  "Lemmy.png", 
-  "Link.png", 
-  "Luigi.png", 
-  "Ludwig.png", 
-  "Mario.png", 
-  "Morton.png", 
-  "Peach.png", 
-  "Roy.png", 
-  "Shy Guy.png", 
-  "Toad.png", 
-  "Waluigi.png", 
-  "Wario.png", 
-  "Wendy.png", 
-  "Yoshi.png"
-];
+export interface Card {
+  id: number;
+  image: string;
+  name: string;
+  facedUp: boolean;
+  matched: boolean;
+}
 
 // array of all cards
 const fullDeck: Card[] = imageNames.map((imageName, i) => ({
   id: i,
-  // image: `assets/images/${imageName}`,
   image: `${process.env.PUBLIC_URL}/assets/images/${imageName}`,
   name: imageName.split('.')[0],
   facedUp: false,
@@ -53,6 +30,7 @@ const fullDeck: Card[] = imageNames.map((imageName, i) => ({
 
 const initialState: GameState = {
   fullDeck,
+  // gameDeck contains 6 pairs of cards, 12 cards total
   gameDeck: shuffleCards([...fullDeck], 6),
   flippedCards: [],
   pendingFlip: null,

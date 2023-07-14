@@ -1,0 +1,22 @@
+export const imageNames = [
+  "Bowser.png", 
+  "Daisy.png", 
+  "Donkey Kong.png", 
+  "Iggy.png", 
+  "Koopa Troopa.png", 
+  "Lakitu.png", 
+  "Lemmy.png", 
+  "Link.png", 
+  "Luigi.png", 
+  "Ludwig.png", 
+  "Mario.png", 
+  "Morton.png", 
+  "Peach.png", 
+  "Roy.png", 
+  "Shy Guy.png", 
+  "Toad.png", 
+  "Waluigi.png", 
+  "Wario.png", 
+  "Wendy.png", 
+  "Yoshi.png"
+];
