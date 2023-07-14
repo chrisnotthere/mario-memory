@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/mario-memory/static/css/main.2f2b1c8d.css",
+    "main.js": "/mario-memory/static/js/main.ca580a79.js",
+    "index.html": "/mario-memory/index.html",
+    "main.2f2b1c8d.css.map": "/mario-memory/static/css/main.2f2b1c8d.css.map",
+    "main.ca580a79.js.map": "/mario-memory/static/js/main.ca580a79.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.2f2b1c8d.css",
+    "static/js/main.ca580a79.js"
+  ]
+}
