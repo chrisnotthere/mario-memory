@@ -45,7 +45,7 @@ const imageNames = [
 const fullDeck: Card[] = imageNames.map((imageName, i) => ({
   id: i,
   // image: `assets/images/${imageName}`,
-  image: `/assets/images/${imageName}`,
+  image: `${process.env.PUBLIC_URL}/assets/images/${imageName}`,
   name: imageName.split('.')[0],
   facedUp: false,
   matched: false,
