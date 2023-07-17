@@ -2,6 +2,8 @@
 
 This project is a memory card flip game. It's designed as a learning exercise to get hands-on experience with Redux, TypeScript, and React. The game logic is managed using Redux, and the entire application is written in TypeScript.
 
+:point_right: [View it live](https://chrisnotthere.github.io/mario-memory/) :point_left:
+
 ## Learning Objectives
 
 The main learning objectives of this project are:
