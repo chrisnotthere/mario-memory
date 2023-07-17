@@ -56,7 +56,7 @@ function Controller() {
       <div className="button-container">
         <button className="controller-button" onClick={handleReset}>Reset</button>
       </div>
-      { gameFinished && <div className="message">🥳 Congratulations! 🍾🍾</div> }
+      { gameFinished && <div className="message">🥳 Congratulations! 🍾</div> }
       <div className="stats-container">
         <div className="move-counter">{movesTaken} moves</div>
         <div className="timer">time: {gameTimer} seconds</div>

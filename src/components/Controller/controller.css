@@ -65,19 +65,16 @@
   }
 
   .message {
-    font-size: 1.2rem;
+    font-size: 1rem;
   }
 }
 
 @media (max-width: 500px) {
   .controller {
-    padding: 0.25rem;
-  }
-
-  .controller-button {
-    height: 1.25rem;
-    font-size: 0.7rem;
-    padding: 0 0.5rem;
+    border-radius: 0;
+    padding: 0.5rem;
+    margin: 0;
+    width: auto;
   }
 
   .message {
@@ -85,6 +82,6 @@
   }
 
   .stats-container {
-    font-size: 0.7rem;
+    font-size: 0.8rem;
   }
 }
