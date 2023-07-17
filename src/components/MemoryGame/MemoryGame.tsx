@@ -36,9 +36,9 @@ export const MemoryGame = () => {
             />
           ) : (
             <img
+              className="card-block"
               src={`${process.env.PUBLIC_URL}/assets/images/block.webp`}
-              alt="Mario Block"
-              width={"80px"}
+              alt="Block Card"
             />
           )}
         </div>
