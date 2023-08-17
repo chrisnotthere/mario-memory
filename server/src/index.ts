@@ -1,15 +1,12 @@
 import express from 'express';
 import mongoose from 'mongoose';
-import dotenv from 'dotenv';
+import { PORT, MONGODB_URI } from './config';
+import highScoresRouter from './routes/highScores';
 
-dotenv.config();
 const app = express();
-const port = process.env.PORT || 3001;
 
 // Connect to MongoDB
-// mongoose.connect(process.env.MONGODB_URI!);
-
-mongoose.connect(process.env.MONGODB_URI!)
+mongoose.connect(MONGODB_URI)
   .then(() => {
     console.log('Successfully connected to MongoDB.');
   })
@@ -17,4 +14,6 @@ mongoose.connect(process.env.MONGODB_URI!)
     console.error('Error connecting to MongoDB:', error);
   });
 
-app.listen(port, () => console.log(`Server running on port ${port}`));
+app.use(highScoresRouter);
+
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
