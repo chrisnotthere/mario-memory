@@ -4,6 +4,7 @@ import { incrementTimer, resetTimer, resetController, setGameFinished } from "..
 import { selectIsGameFinished, newGame } from "../../features/memoryGame/gameSlice";
 import { useAppSelector } from "../../app/hooks";
 import "./controller.css";
+import { use } from "chai";
 
 function Controller() {
   const dispatch = useDispatch();
@@ -50,6 +51,36 @@ function Controller() {
       console.log(`time taken: ${gameTimer}`)
     }
   }, [gameFinished, dispatch]);
+
+  // send game data to server
+  const sendGameData = (movesTaken: number, gameTimer: number) => {
+    const gameData = {
+      name: 'Player 1',
+      moves: movesTaken,
+      time: gameTimer,
+    };
+  
+    fetch('http://localhost:3001/high-scores', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(gameData),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log('Game data sent successfully:', data);
+      })
+      .catch((error) => {
+        console.error('Error sending game data:', error);
+      });
+  };
+
+  useEffect(() => {
+    if (gameFinished) {
+      sendGameData(movesTaken, gameTimer);
+    }
+  }, [gameFinished]);
   
   return (
     <div className="controller">

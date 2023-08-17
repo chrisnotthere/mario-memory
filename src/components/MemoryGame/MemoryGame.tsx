@@ -17,7 +17,7 @@ export const MemoryGame = () => {
 
   // log the game deck to the console for debugging
   useEffect(() => {
-    console.log(gameDeck);
+    // console.log(gameDeck);
   }, [gameDeck]);
 
   return (
