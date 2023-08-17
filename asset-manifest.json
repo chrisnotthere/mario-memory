@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/mario-memory/static/css/main.ae1a331e.css",
-    "main.js": "/mario-memory/static/js/main.89f048ae.js",
-    "index.html": "/mario-memory/index.html",
-    "main.ae1a331e.css.map": "/mario-memory/static/css/main.ae1a331e.css.map",
-    "main.89f048ae.js.map": "/mario-memory/static/js/main.89f048ae.js.map"
+    "main.css": "https://chrisnotthere.github.io/mario-memory/static/css/main.ae1a331e.css",
+    "main.js": "https://chrisnotthere.github.io/mario-memory/static/js/main.6954e31a.js",
+    "index.html": "https://chrisnotthere.github.io/mario-memory/index.html",
+    "main.ae1a331e.css.map": "https://chrisnotthere.github.io/mario-memory/static/css/main.ae1a331e.css.map",
+    "main.6954e31a.js.map": "https://chrisnotthere.github.io/mario-memory/static/js/main.6954e31a.js.map"
   },
   "entrypoints": [
     "static/css/main.ae1a331e.css",
-    "static/js/main.89f048ae.js"
+    "static/js/main.6954e31a.js"
   ]
 }
