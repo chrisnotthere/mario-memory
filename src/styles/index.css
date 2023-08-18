@@ -13,3 +13,9 @@ body {
   -moz-osx-font-smoothing: grayscale;
   overflow: hidden;
 }
+
+/* reset margin */
+
+h1, h2, h3, h4, h5, h6, p{
+	margin: 0;
+}
