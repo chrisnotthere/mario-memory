@@ -1,0 +1,92 @@
+.scoreboard-modal {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+  position: fixed;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 400px;
+  padding: 1.5rem;
+  background: radial-gradient(ellipse at bottom, rgba(255, 255, 255, 0.1) 0%, rgba(0, 0, 0, 0.6) 100%), #000000;
+  background-size: 4px 4px;
+  background-position: 0 0, 2px 2px;
+  color: #77FF77;
+  border: 3px solid var(--mario-red);
+  border-radius: 1rem;
+  text-align: center;
+  font-family: "Press Start 2P", monospace;
+  box-shadow: 0px 0px 20px rgba(255, 0, 0, 0.5);
+}
+
+.scoreboard-modal h1 {
+  font-size: 1.25rem;
+}
+
+.scoreboard-modal p {
+  font-size: .8rem;
+}
+
+.scoreboard-modal input {
+  /* width: 100%; */
+  text-align: center;
+  padding: 8px;
+  border: 1px solid #fff;
+  border-radius: .5rem;
+  background: #333;
+  color: #fff;
+}
+
+.scoreboard-modal button {
+  background: #ff0000;
+  border: none;
+  border-radius: .5rem;
+  color: #fff;
+  padding: 10px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.scoreboard-modal button:hover {
+  background: #fa5656;
+}
+
+.scores {
+  display: flex;
+  flex-direction: column;
+  gap: .25rem;
+  margin-top: 1rem;
+}
+
+.score-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.rank-name {
+  display: flex;
+  align-items: center;
+}
+
+.score {
+  text-align: right;
+}
+
+
+.loader {
+  border: 4px solid rgba(255, 255, 255, 0.3);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border-top: 4px solid #ff0000;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+

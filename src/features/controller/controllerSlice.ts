@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { RootState } from '../../app/store';
 
 interface ControllerState {
   gameStarted: boolean;
@@ -12,6 +13,17 @@ const initialState: ControllerState = {
   gameFinished: false,
   gameTimer: 0,
   movesTaken: 0,
+};
+
+export const selectScore = (state: RootState) => {
+  const movesTaken = state.controller.movesTaken;
+  const gameTimer = state.controller.gameTimer;
+
+  // scoring algorithm
+  const score = 1200000 - (movesTaken * 15502 + gameTimer * 6257);
+
+  // score doesn't go negative
+  return Math.max(score, 0); 
 };
 
 export const controllerSlice = createSlice({
