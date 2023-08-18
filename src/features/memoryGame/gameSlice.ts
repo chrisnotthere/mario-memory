@@ -78,6 +78,13 @@ export const gameSlice = createSlice({
           : card
       );
     },
+    // set all cards in game deck to matched, for testing purposes
+    matchAllCards: (state) => {
+      state.gameDeck = state.gameDeck.map((card) => ({
+        ...card,
+        matched: true,
+      }));
+    },
     unflipCards: (state, action: PayloadAction<number[]>) => {
       state.gameDeck = state.gameDeck.map(card => 
         action.payload.includes(card.id) 
@@ -88,6 +95,6 @@ export const gameSlice = createSlice({
   },
 });
 
-export const { setPendingFlip, newGame } = gameSlice.actions;
+export const { setPendingFlip, newGame, matchAllCards } = gameSlice.actions;
 
 export default gameSlice.reducer;
