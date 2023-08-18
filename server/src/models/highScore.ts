@@ -2,8 +2,7 @@ import mongoose from 'mongoose';
 
 const highScoreSchema = new mongoose.Schema({
   name: String,
-  time: Number,
-  moves: Number,
+  score: Number,
 });
 
 const HighScore = mongoose.model('HighScore', highScoreSchema);
