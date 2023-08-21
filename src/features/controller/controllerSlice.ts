@@ -22,7 +22,7 @@ export const selectScore = (state: RootState) => {
   const gameTimer = state.controller.gameTimer;
 
   // scoring algorithm
-  const score = 1200000 - (movesTaken * 15502 + gameTimer * 6257);
+  const score = 1500000 - (movesTaken * 16502 + gameTimer * 7257);
 
   // score doesn't go negative
   return Math.max(score, 0); 
