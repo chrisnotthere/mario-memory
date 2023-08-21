@@ -5,16 +5,11 @@
   width: 100%;
   max-width: 650px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 1.25rem;
   background-color: var(--mario-red);
   border-radius: 1rem 1rem 0 0;
 }
 
-.message {
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: #fff;
-}
 
 /* button styling inspired from https://getcssscan.com/css-buttons-examples */
 .controller-button {
@@ -59,21 +54,46 @@
   gap: 1rem;
 }
 
-.difficulty-button {
-  width: 5rem;
+.difficulty-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  border: 2px solid black;
+  padding: 0.5rem;
+  /* width: 8rem; */
+  border-radius: 0.5rem;
+  background-color: var(--mario-green);
 }
 
-.difficulty-container {
+.difficulty-foot {
   display: flex;
   align-items: center;
   gap: 0.5rem;
 }
+
+.difficulty-button {
+  width: 5rem;
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 
 .difficulty-icon {
   margin-left: 0.5rem;
   width: 35px;
   height: 35px;
 }
+
+.stats-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.25rem; 
+}
+
 
 /* media queries */
 

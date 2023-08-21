@@ -128,38 +128,39 @@ function Controller() {
   return (
     <div className="controller">
       <div className="button-container">
-        <button className="controller-button" onClick={handleReset}>
-          Reset
-        </button>
         {/* <button className="controller-button" onClick={mockEndGame}>
           end game
         </button> */}
         <div className="difficulty-container">
-          <button
-            className="controller-button difficulty-button"
-            onClick={handleDifficultyToggle}
-          >
-            {difficulty}
-          </button>
-          <div className="difficulty-icon-container">
-            <img
-              className="difficulty-icon"
-              src={`${process.env.PUBLIC_URL}/assets/images/${difficultyIcons[difficulty]}`}
-              alt="Block Card"
-            />{" "}
+          <p>Select Difficulty</p>
+          <div className="difficulty-foot">
+            <button
+              className="controller-button difficulty-button"
+              onClick={handleDifficultyToggle}
+            >
+              {difficulty}
+            </button>
+            <div className="difficulty-icon-container">
+              <img
+                className="difficulty-icon"
+                src={`${process.env.PUBLIC_URL}/assets/images/${difficultyIcons[difficulty]}`}
+                alt="Block Card"
+              />{" "}
+            </div>
           </div>
         </div>
+        <button className="controller-button" onClick={handleReset}>
+          Reset
+        </button>
       </div>
-      {gameFinished && <div className="message">🥳 Congratulations! 🍾</div>}
       <div className="stats-container">
         <div className="timer">
-          time
           {timeLimit
-            ? ` remaining: ${timeLimit - gameTimer}`
-            : `: ${gameTimer} seconds`}
+            ? ` Time remaining: ${timeLimit - gameTimer}`
+            : ``}
         </div>
         <div className="move-counter">{movesTaken} moves</div>
-        <div className="timer">score: {score}</div>
+        <div className="timer">Score: {score}</div>
       </div>
     </div>
   );

@@ -1,21 +1,21 @@
 .card-container {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 2.5rem;
+  gap: 1rem;
   justify-items: center;
   align-items: center;
   width: 100%;
   max-width: 650px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 1.25rem;
   background-color: var(--mario-yellow);
   border-radius: 0 0 1rem 1rem;
   box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
 }
 
 .card {
-  width: 100px;
-  height: 100px;
+  width: 70px;
+  height: 70px;
   padding: 1rem;
   border-radius: 1rem;
   background-color: #fff;
@@ -31,12 +31,12 @@
 }
 
 .card-image {
-  width: 100px;
-  height: 100px;
+  width: 70px;
+  height: 70px;
 }
 
 .card-block {
-  width: 80px;
+  width: 65px;
 }
 
 .card-face {

@@ -44,7 +44,7 @@ function Scoreboard() {
       difficulty: difficulty,
       date: new Date().toISOString(),
     };
-    console.log("Sending game data:", gameData);
+    // console.log("Sending game data:", gameData);
 
     fetch("http://localhost:3001/high-scores", {
       method: "POST",
@@ -66,13 +66,11 @@ function Scoreboard() {
   const fetchHighScores = (mode: "all-time" | "weekly") => {
     const endpoint =
       mode === "all-time" ? "/high-scores" : "/weekly-high-scores";
-    fetch(
-      `http://localhost:3001${endpoint}?difficulty=${difficulty}`
-    )
+    fetch(`http://localhost:3001${endpoint}?difficulty=${difficulty}`)
       .then((response) => response.json())
       .then((data) => {
-        console.log(`${difficulty} high scores fetched successfully:`, data);
-        console.log(mode)
+        // console.log(`${difficulty} high scores fetched successfully:`, data);
+        // console.log(mode);
         setHighScores(data);
         setLoading(false);
       })
@@ -82,7 +80,7 @@ function Scoreboard() {
   };
 
   const handleSubmit = () => {
-    console.log("Submitting game data...");
+    // console.log("Submitting game data...");
     postHighscore(name, score, difficulty);
   };
 
@@ -113,29 +111,57 @@ function Scoreboard() {
                 </div>
               ))}
             </div>
-            <div className="pagination-controls">
+            <div className="scores-foot">
+              <div className="pagination-controls">
+                <button
+                  onClick={() => setCurrentPage(currentPage - 1)}
+                  disabled={currentPage === 1}
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={1.5}
+                    stroke="currentColor"
+                    className="w-6 h-6 arrow-icon"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"
+                    />
+                  </svg>
+                </button>
+                <span>
+                  {currentPage} of {totalPages}
+                </span>
+                <button
+                  onClick={() => setCurrentPage(currentPage + 1)}
+                  disabled={currentPage === totalPages}
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={1.5}
+                    stroke="currentColor"
+                    className="w-6 h-6 arrow-icon"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
+                    />
+                  </svg>
+                </button>
+              </div>
               <button
-                onClick={() => setCurrentPage(currentPage - 1)}
-                disabled={currentPage === 1}
+                className="high-score-toggle"
+                onClick={() => handleScoreToggle()}
               >
-                Previous
-              </button>
-              <span>
-                {currentPage} of {totalPages}
-              </span>
-              <button
-                onClick={() => setCurrentPage(currentPage + 1)}
-                disabled={currentPage === totalPages}
-              >
-                Next
+                View {viewMode === "all-time" ? "Weekly" : "All-Time"} Scores
               </button>
             </div>
-            <button
-              className="high-score-toggle"
-              onClick={() => handleScoreToggle()}
-            >
-              View {viewMode === "all-time" ? "Weekly" : "All-Time"} Scores
-            </button>
           </div>
         </div>
       ) : (
