@@ -52,6 +52,29 @@
   transform: translateY(2px);
 }
 
+.button-container {
+  /* background-color: pink; */
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.difficulty-button {
+  width: 5rem;
+}
+
+.difficulty-container {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.difficulty-icon {
+  margin-left: 0.5rem;
+  width: 35px;
+  height: 35px;
+}
+
 /* media queries */
 
 @media (max-width: 800px) {
