@@ -8,10 +8,12 @@ router.get("/high-scores", (req, res) => {
 
   HighScore.find({ difficulty })
     .then((scores) => {
-      console.log("Found scores:", scores);
       res.json(scores);
     })
-    .catch((err) => res.status(400).json({ error: err.message }));
+    .catch((err) => {
+      console.error("Error fetching high scores:", err.message);
+      res.status(400).json({ error: err.message });
+    });
 });
 
 router.get("/weekly-high-scores", (req, res) => {
