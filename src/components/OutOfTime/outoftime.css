@@ -1,0 +1,31 @@
+.out-of-time-modal {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  position: fixed;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  padding: 2rem;
+  background: radial-gradient(ellipse at bottom, rgba(255, 255, 255, 0.1) 0%, rgba(0, 0, 0, 0.6) 100%), #000000;
+  background-size: 4px 4px;
+  background-position: 0 0, 2px 2px;
+  color: #77FF77;
+  border: 3px solid var(--mario-red);
+  border-radius: 1rem;
+  text-align: center;
+  font-family: "Press Start 2P", monospace;
+  box-shadow: 0px 0px 20px rgba(255, 0, 0, 0.5);
+}
+
+.out-of-time-modal h1 {
+  font-size: 1.2rem;
+
+}
+
+.out-of-time-modal p {
+  font-size: .7rem;
+}
