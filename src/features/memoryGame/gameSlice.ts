@@ -9,7 +9,16 @@ interface GameState {
   flippedCards: Card[]; // currently flipped cards
   pendingFlip: number | null; // id of card clicked but not processed yet
   lastFlippedCard: number | null; // id of last card flipped
+  difficulty: DifficultyLevel[0]; // initial difficulty level 'easy'
 }
+
+export type DifficultyLevel = 'easy' | 'medium' | 'hard';
+export const difficultyLevels: DifficultyLevel[] = ['easy', 'medium', 'hard'];
+export const difficultyPairs: Record<DifficultyLevel, number> = {
+  easy: 6,
+  medium: 8,
+  hard: 10,
+};
 
 export interface Card {
   id: number;
@@ -30,11 +39,12 @@ const fullDeck: Card[] = imageNames.map((imageName, i) => ({
 
 const initialState: GameState = {
   fullDeck,
-  // gameDeck contains 6 pairs of cards, 12 cards total
-  gameDeck: shuffleCards([...fullDeck], 6),
+  // gameDeck contains x pairs of cards, for example easy difficulty has 6 pairs
+  gameDeck: shuffleCards([...fullDeck], difficultyPairs['easy']),
   flippedCards: [],
   pendingFlip: null,
   lastFlippedCard: null,
+  difficulty: 'easy',
 };
 
 // a selector to check if every card in the game deck is matched
@@ -47,8 +57,13 @@ export const gameSlice = createSlice({
   initialState,
   reducers: {
     newGame: (state) => {
-      state.gameDeck = shuffleCards([...fullDeck], 6);
+       // Get number of pairs based on difficulty level
+      const numberOfPairs = difficultyPairs[state.difficulty as DifficultyLevel];
+      state.gameDeck = shuffleCards([...fullDeck], numberOfPairs);
       state.flippedCards = [];
+    },
+    setDifficulty: (state, action: PayloadAction<DifficultyLevel>) => {
+      state.difficulty = action.payload;
     },
     flipCard: (state, action: PayloadAction<number>) => {
       const card = state.gameDeck.find(card => card.id === action.payload);
@@ -95,6 +110,6 @@ export const gameSlice = createSlice({
   },
 });
 
-export const { setPendingFlip, newGame, matchAllCards } = gameSlice.actions;
+export const { setPendingFlip, newGame, matchAllCards, setDifficulty } = gameSlice.actions;
 
 export default gameSlice.reducer;

@@ -7,11 +7,15 @@ import {
   setGameFinished,
   resetMoves,
   incrementMoves,
+  selectScore,
 } from "../../features/controller/controllerSlice";
 import {
   selectIsGameFinished,
   newGame,
   matchAllCards,
+  difficultyLevels,
+  DifficultyLevel,
+  setDifficulty,
 } from "../../features/memoryGame/gameSlice";
 import { useAppSelector } from "../../app/hooks";
 import "./controller.css";
@@ -23,6 +27,16 @@ function Controller() {
   const gameTimer = useAppSelector((state) => state.controller.gameTimer);
   const gameStarted = useAppSelector((state) => state.controller.gameStarted);
   const gameFinished = useAppSelector(selectIsGameFinished);
+  const score = useAppSelector(selectScore);
+  const difficulty = useAppSelector(
+    (state) => state.game.difficulty
+  ) as DifficultyLevel;
+
+  const difficultyIcons: Record<DifficultyLevel, string> = {
+    easy: "Star.png",
+    medium: "1UP.png",
+    hard: "Bullet.png",
+  };
 
   // start and stop game timer
   useEffect(() => {
@@ -50,27 +64,36 @@ function Controller() {
     dispatch(newGame());
   };
 
-  // simulate end game for testing purposes
+  // simulate end game for testing purposes, will delete later
   const mockEndGame = () => {
     // Set all cards as matched
     dispatch(matchAllCards());
-  
+
     // Set gameFinished to true
     dispatch(setGameFinished(true));
-  
+
     // Reset moves and then increment randomly between 10 to 25 times to set movesTaken
     const randomMoves = Math.floor(Math.random() * (25 - 10 + 1)) + 10;
     dispatch(resetMoves());
     for (let i = 0; i < randomMoves; i++) {
       dispatch(incrementMoves());
     }
-  
+
     // Reset the timer and then increment randomly between 10 to 60 seconds to set gameTimer
     const randomTime = Math.floor(Math.random() * (60 - 10 + 1)) + 10;
     dispatch(resetTimer());
     for (let i = 0; i < randomTime; i++) {
       dispatch(incrementTimer());
     }
+  };
+
+  // toggle difficulty setting
+  const handleDifficultyToggle = () => {
+    // Get the index of the next difficulty level
+    const nextIndex =
+      (difficultyLevels.indexOf(difficulty) + 1) % difficultyLevels.length;
+    dispatch(setDifficulty(difficultyLevels[nextIndex])); // Set the new difficulty
+    handleReset(); // Reset the game
   };
 
   // set gameFinished to true when all cards are matched
@@ -91,14 +114,30 @@ function Controller() {
         <button className="controller-button" onClick={handleReset}>
           Reset
         </button>
-        <button className="controller-button" onClick={mockEndGame}>
+        {/* <button className="controller-button" onClick={mockEndGame}>
           end game
-        </button>
+        </button> */}
+        <div className="difficulty-container">
+          <button
+            className="controller-button difficulty-button"
+            onClick={handleDifficultyToggle}
+          >
+            {difficulty}
+          </button>
+          <div className="difficulty-icon-container">
+            <img
+              className="difficulty-icon"
+              src={`${process.env.PUBLIC_URL}/assets/images/${difficultyIcons[difficulty]}`}
+              alt="Block Card"
+            />{" "}
+          </div>
+        </div>
       </div>
       {gameFinished && <div className="message">🥳 Congratulations! 🍾</div>}
       <div className="stats-container">
         <div className="move-counter">{movesTaken} moves</div>
         <div className="timer">time: {gameTimer} seconds</div>
+        <div className="timer">score: {score}</div>
       </div>
     </div>
   );
