@@ -7,6 +7,9 @@ import "./memoryGame.css";
 export const MemoryGame = () => {
   const { gameDeck, pendingFlip } = useAppSelector((state) => state.game);
   const dispatch = useAppDispatch();
+  const timeLimitReached = useAppSelector(
+    (state) => state.controller.timeLimitReached
+  );
 
   // if there is a pending flip, flip the card and check if it matches
   useEffect(() => {
@@ -26,7 +29,12 @@ export const MemoryGame = () => {
         <div
           key={card.id}
           className={`card ${card.matched ? "card-matched" : ""}`}
-          onClick={() => dispatch(setPendingFlip(card.id))}
+          onClick={() => {
+            if (!timeLimitReached) {
+              // only allow card to be flipped if time limit has not been reached
+              dispatch(setPendingFlip(card.id));
+            }
+          }}
         >
           {card.facedUp ? (
             <img
