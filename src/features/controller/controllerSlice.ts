@@ -6,6 +6,7 @@ interface ControllerState {
   gameFinished: boolean;
   gameTimer: number;
   movesTaken: number;
+  timeLimitReached: boolean;
 }
 
 const initialState: ControllerState = {
@@ -13,6 +14,7 @@ const initialState: ControllerState = {
   gameFinished: false,
   gameTimer: 0,
   movesTaken: 0,
+  timeLimitReached: false,
 };
 
 export const selectScore = (state: RootState) => {
@@ -54,6 +56,9 @@ export const controllerSlice = createSlice({
       state.gameTimer = 0;
       state.movesTaken = 0;
     },
+    setTimeLimitReached: (state, action: PayloadAction<boolean>) => {
+      state.timeLimitReached = action.payload;
+    },
   },
 });
 
@@ -65,6 +70,7 @@ export const {
   incrementTimer,
   resetTimer,
   resetController,
+  setTimeLimitReached,
 } = controllerSlice.actions;
 
 export default controllerSlice.reducer;

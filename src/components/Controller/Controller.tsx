@@ -8,6 +8,7 @@ import {
   resetMoves,
   incrementMoves,
   selectScore,
+  setTimeLimitReached,
 } from "../../features/controller/controllerSlice";
 import {
   selectIsGameFinished,
@@ -31,6 +32,7 @@ function Controller() {
   const difficulty = useAppSelector(
     (state) => state.game.difficulty
   ) as DifficultyLevel;
+  const timeLimitReached = useAppSelector((state) => state.controller.timeLimitReached);
 
   const difficultyIcons: Record<DifficultyLevel, string> = {
     easy: "Star.png",
@@ -38,29 +40,44 @@ function Controller() {
     hard: "Bullet.png",
   };
 
+  const difficultyTimeLimits: Record<DifficultyLevel, number | null> = {
+    easy: null, // No time limit
+    medium: 5, // short limits for testing
+    hard: 10, // short limits for testing
+  };
+
+  const timeLimit = difficultyTimeLimits[difficulty];
+
   // start and stop game timer
   useEffect(() => {
     let timerId: NodeJS.Timeout | undefined;
-
-    // Start the timer only if gameStarted is true and gameFinished is false
-    if (gameStarted && !gameFinished) {
+  
+    if (gameStarted && !gameFinished && !timeLimitReached) {
       timerId = setInterval(() => {
+        // Check if the time limit has been reached
+        if (timeLimit !== null && gameTimer >= timeLimit) {
+          clearInterval(timerId);
+          dispatch(setTimeLimitReached(true)); // Set timeLimitReached to true
+          dispatch(setGameFinished(true)); // End the game
+          return;
+        }
+  
         dispatch(incrementTimer());
       }, 1000);
-    } else {
-      // Stop the timer if the game isn't started or is finished
-      clearInterval(timerId);
-      if (!gameStarted) {
-        dispatch(resetTimer());
-      }
     }
-    // Cleanup function that stops the interval when the component unmounts
-    return () => clearInterval(timerId);
-  }, [gameStarted, gameFinished, dispatch]);
+  
+    // Cleanup function to clear the timer
+    return () => {
+      if (timerId) {
+        clearInterval(timerId);
+      }
+    };
+  }, [gameStarted, gameTimer, gameFinished, timeLimitReached, timeLimit, dispatch]);
 
   // reset game
   const handleReset = () => {
     dispatch(resetController());
+    dispatch(setTimeLimitReached(false));
     dispatch(newGame());
   };
 
@@ -135,8 +152,13 @@ function Controller() {
       </div>
       {gameFinished && <div className="message">🥳 Congratulations! 🍾</div>}
       <div className="stats-container">
+        <div className="timer">
+          time
+          {timeLimit
+            ? ` remaining: ${timeLimit - gameTimer}`
+            : `: ${gameTimer} seconds`}
+        </div>
         <div className="move-counter">{movesTaken} moves</div>
-        <div className="timer">time: {gameTimer} seconds</div>
         <div className="timer">score: {score}</div>
       </div>
     </div>
