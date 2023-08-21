@@ -6,6 +6,8 @@ import "./scoreboard.css";
 type HighScore = {
   name: string;
   score: number;
+  difficulty: string;
+  date: string;
 };
 
 function Scoreboard() {
@@ -14,6 +16,8 @@ function Scoreboard() {
   const [loading, setLoading] = useState(false);
   const [highScores, setHighScores] = useState<HighScore[] | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
+  const [viewMode, setViewMode] = useState<"all-time" | "weekly">("all-time");
+  const difficulty = useAppSelector((state) => state.game.difficulty);
 
   // sort high scores by score
   const sortedHighScores = highScores
@@ -21,7 +25,7 @@ function Scoreboard() {
     : [];
 
   // pagination logic
-  const itemsPerPage = 6;
+  const itemsPerPage = 5;
   const totalPages = Math.ceil(
     (highScores ? highScores.length : 0) / itemsPerPage
   );
@@ -33,11 +37,14 @@ function Scoreboard() {
   );
 
   // send game data to server
-  const postHighscore = (name: string, score: number) => {
+  const postHighscore = (name: string, score: number, difficulty: string) => {
     const gameData = {
       name: name,
       score: score,
+      difficulty: difficulty,
+      date: new Date().toISOString(),
     };
+    console.log("Sending game data:", gameData);
 
     fetch("http://localhost:3001/high-scores", {
       method: "POST",
@@ -49,18 +56,23 @@ function Scoreboard() {
       .then((response) => response.json())
       .then((data) => {
         console.log("Game data sent successfully:", data);
-        fetchHighScores();
+        fetchHighScores("all-time");
       })
       .catch((error) => {
         console.error("Error sending game data:", error);
       });
   };
 
-  const fetchHighScores = () => {
-    fetch("http://localhost:3001/high-scores")
+  const fetchHighScores = (mode: "all-time" | "weekly") => {
+    const endpoint =
+      mode === "all-time" ? "/high-scores" : "/weekly-high-scores";
+    fetch(
+      `http://localhost:3001${endpoint}?difficulty=${difficulty}`
+    )
       .then((response) => response.json())
       .then((data) => {
-        console.log("High scores fetched successfully:", data);
+        console.log(`${difficulty} high scores fetched successfully:`, data);
+        console.log(mode)
         setHighScores(data);
         setLoading(false);
       })
@@ -71,9 +83,12 @@ function Scoreboard() {
 
   const handleSubmit = () => {
     console.log("Submitting game data...");
-    const gameData = { name, score };
-    console.log(gameData);
-    postHighscore(name, score);
+    postHighscore(name, score, difficulty);
+  };
+
+  const handleScoreToggle = () => {
+    setViewMode(viewMode === "all-time" ? "weekly" : "all-time");
+    fetchHighScores(viewMode === "all-time" ? "weekly" : "all-time");
   };
 
   return (
@@ -85,6 +100,8 @@ function Scoreboard() {
       ) : highScores ? (
         <div>
           <h2>High Scores</h2>
+          <h5>({difficulty})</h5>
+          <h4>{viewMode === "all-time" ? "All Time:" : "Weekly:"}</h4>
           <div className="scores">
             <div className="score-row-container">
               {currentHighScores.map((item, index) => (
@@ -113,6 +130,12 @@ function Scoreboard() {
                 Next
               </button>
             </div>
+            <button
+              className="high-score-toggle"
+              onClick={() => handleScoreToggle()}
+            >
+              View {viewMode === "all-time" ? "Weekly" : "All-Time"} Scores
+            </button>
           </div>
         </div>
       ) : (
