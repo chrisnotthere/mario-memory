@@ -1,14 +1,17 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-const mongoose_1 = __importDefault(require("mongoose"));
-const highScoreSchema = new mongoose_1.default.Schema({
-    name: String,
-    score: Number,
-    difficulty: String,
-    date: String,
+const mongodb_1 = require("mongodb");
+const config_1 = require("../config");
+let db;
+mongodb_1.MongoClient.connect(config_1.MONGODB_URI)
+    .then((client) => {
+    db = client.db();
+})
+    .catch((error) => {
+    console.error("Error connecting to MongoDB:", error);
 });
-const HighScore = mongoose_1.default.model('HighScore', highScoreSchema);
+const HighScore = {
+    find: (query) => db.collection("HighScore").find(query).toArray(),
+    save: (data) => db.collection("HighScore").insertOne(data),
+};
 exports.default = HighScore;
