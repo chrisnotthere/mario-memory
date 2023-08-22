@@ -7,6 +7,8 @@ const mongoose_1 = __importDefault(require("mongoose"));
 const highScoreSchema = new mongoose_1.default.Schema({
     name: String,
     score: Number,
+    difficulty: String,
+    date: String,
 });
 const HighScore = mongoose_1.default.model('HighScore', highScoreSchema);
 exports.default = HighScore;
