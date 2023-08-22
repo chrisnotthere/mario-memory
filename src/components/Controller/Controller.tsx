@@ -143,7 +143,7 @@ function Controller() {
             <div className="difficulty-icon-container">
               <img
                 className="difficulty-icon"
-                src={`${process.env.PUBLIC_URL}/assets/images/${difficultyIcons[difficulty]}`}
+                src={`${process.env.REACT_APP_PUBLIC_URL}/assets/images/${difficultyIcons[difficulty]}`}
                 alt="Block Card"
               />{" "}
             </div>

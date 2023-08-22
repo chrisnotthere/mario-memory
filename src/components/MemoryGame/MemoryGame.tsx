@@ -45,7 +45,7 @@ export const MemoryGame = () => {
           ) : (
             <img
               className="card-block"
-              src={`${process.env.PUBLIC_URL}/assets/images/block.webp`}
+              src={`${process.env.REACT_APP_PUBLIC_URL}/assets/images/block.webp`}
               alt="Block Card"
             />
           )}

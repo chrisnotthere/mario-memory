@@ -47,7 +47,7 @@ function Scoreboard() {
     };
     // console.log("Sending game data:", gameData);
 
-    fetch("http://localhost:3001/high-scores", {
+    fetch(`${process.env.REACT_APP_API_URL}/high-scores`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -67,7 +67,7 @@ function Scoreboard() {
   const fetchHighScores = (mode: "all-time" | "weekly") => {
     const endpoint =
       mode === "all-time" ? "/high-scores" : "/weekly-high-scores";
-    fetch(`http://localhost:3001${endpoint}?difficulty=${difficulty}`)
+    fetch(`${process.env.REACT_APP_API_URL}${endpoint}?difficulty=${difficulty}`)
       .then((response) => response.json())
       .then((data) => {
         // console.log(`${difficulty} high scores fetched successfully:`, data);

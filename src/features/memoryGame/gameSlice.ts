@@ -31,7 +31,7 @@ export interface Card {
 // array of all cards
 const fullDeck: Card[] = imageNames.map((imageName, i) => ({
   id: i,
-  image: `${process.env.PUBLIC_URL}/assets/images/${imageName}`,
+  image: `${process.env.REACT_APP_PUBLIC_URL}/assets/images/${imageName}`,
   name: imageName.split('.')[0],
   facedUp: false,
   matched: false,
