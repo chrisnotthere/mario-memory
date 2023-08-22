@@ -18,6 +18,7 @@ function Scoreboard() {
   const [currentPage, setCurrentPage] = useState(1);
   const [viewMode, setViewMode] = useState<"all-time" | "weekly">("all-time");
   const difficulty = useAppSelector((state) => state.game.difficulty);
+  const [nameError, setNameError] = useState<string | null>(null);
 
   // sort high scores by score
   const sortedHighScores = highScores
@@ -81,6 +82,11 @@ function Scoreboard() {
 
   const handleSubmit = () => {
     // console.log("Submitting game data...");
+    if (!name.trim()) {
+      setNameError('Name cannot be empty');
+      return;
+    }
+    setNameError(null);
     postHighscore(name, score, difficulty);
   };
 
@@ -175,6 +181,7 @@ function Scoreboard() {
             placeholder="Enter your name"
           />
           <button onClick={handleSubmit}>Submit</button>
+          {nameError && <p style={{ color: "red" }}>{nameError}</p>}
         </>
       )}
     </div>
