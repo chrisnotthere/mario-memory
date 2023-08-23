@@ -19,9 +19,10 @@ function Scoreboard() {
   const [viewMode, setViewMode] = useState<"all-time" | "weekly">("all-time");
   const difficulty = useAppSelector((state) => state.game.difficulty);
   const [nameError, setNameError] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
 
   // sort high scores by score
-  const sortedHighScores = highScores
+  const sortedHighScores = Array.isArray(highScores)
     ? highScores.slice().sort((a, b) => b.score - a.score)
     : [];
 
@@ -54,36 +55,53 @@ function Scoreboard() {
       },
       body: JSON.stringify(gameData),
     })
-      .then((response) => response.json())
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Failed to post high scores");
+        }
+        return response.json();
+      })
       .then((data) => {
         console.log("Game data sent successfully:", data);
         fetchHighScores("all-time");
+        setError(null);
       })
       .catch((error) => {
         console.error("Error sending game data:", error);
+        setError("Something went wrong");
       });
   };
 
   const fetchHighScores = (mode: "all-time" | "weekly") => {
     const endpoint =
       mode === "all-time" ? "/high-scores" : "/weekly-high-scores";
-    fetch(`${process.env.REACT_APP_API_URL}${endpoint}?difficulty=${difficulty}`)
-      .then((response) => response.json())
+    setLoading(true);
+    fetch(
+      `${process.env.REACT_APP_API_URL}${endpoint}?difficulty=${difficulty}`
+    )
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Failed to fetch high scores");
+        }
+        return response.json();
+      })
       .then((data) => {
         // console.log(`${difficulty} high scores fetched successfully:`, data);
         // console.log(mode);
         setHighScores(data);
         setLoading(false);
+        setError(null);
       })
       .catch((error) => {
         console.error("Error fetching high scores:", error);
+        setError("Something went wrong");
       });
   };
 
   const handleSubmit = () => {
     // console.log("Submitting game data...");
     if (!name.trim()) {
-      setNameError('Name cannot be empty');
+      setNameError("Name cannot be empty");
       return;
     }
     setNameError(null);
@@ -181,7 +199,8 @@ function Scoreboard() {
             placeholder="Enter your name"
           />
           <button onClick={handleSubmit}>Submit</button>
-          {nameError && <p style={{ color: "red" }}>{nameError}</p>}
+          {nameError && <p className="error-message">{nameError}</p>}
+          {error && <p className="error-message">{error}</p>}
         </>
       )}
     </div>
