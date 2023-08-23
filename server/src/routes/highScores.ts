@@ -1,28 +1,12 @@
-import { Collection, Document, MongoClient } from "mongodb";
 import express from "express";
-import { MONGODB_URI } from "../config";
+import HighScore from "../models/highScore";
 
 const router = express.Router();
-
-let db;
-let highScoresCollection: Collection<Document>;
-
-MongoClient.connect(MONGODB_URI)
-  .then((client) => {
-    db = client.db("test");
-    highScoresCollection = db.collection("highscores");
-    console.log("Successfully connected to MongoDB.");
-  })
-  .catch((error) => {
-    console.error("Error connecting to MongoDB:", error);
-  });
 
 router.get("/high-scores", (req, res) => {
   const difficulty = req.query.difficulty;
 
-  highScoresCollection
-    .find({ difficulty })
-    .toArray()
+  HighScore.find({ difficulty })
     .then((scores) => {
       res.json(scores);
     })
@@ -37,12 +21,10 @@ router.get("/weekly-high-scores", (req, res) => {
   const oneWeekAgo = new Date();
   oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
 
-  highScoresCollection
-    .find({
-      difficulty,
-      date: { $gte: oneWeekAgo.toISOString() },
-    })
-    .toArray()
+  HighScore.find({
+    difficulty,
+    date: { $gte: oneWeekAgo.toISOString() },
+  })
     .then((scores) => {
       res.json(scores);
     })
@@ -53,10 +35,9 @@ router.get("/weekly-high-scores", (req, res) => {
 });
 
 router.post("/high-scores", (req, res) => {
-  const newScore = req.body;
-
-  highScoresCollection
-    .insertOne(newScore)
+  const newScore = new HighScore(req.body);
+  newScore
+    .save()
     .then(() => res.json({ success: true }))
     .catch((err) => res.status(400).json({ error: err.message }));
 });

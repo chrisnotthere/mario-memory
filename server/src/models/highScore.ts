@@ -1,19 +1,12 @@
-import { Db, MongoClient } from "mongodb";
-import { MONGODB_URI } from "../config";
+import mongoose from 'mongoose';
 
-let db: Db;
+const highScoreSchema = new mongoose.Schema({
+  name: String,
+  score: Number,
+  difficulty: String,
+  date: String,
+});
 
-MongoClient.connect(MONGODB_URI)
-  .then((client) => {
-    db = client.db();
-  })
-  .catch((error) => {
-    console.error("Error connecting to MongoDB:", error);
-  });
-
-const HighScore = {
-  find: (query: any) => db.collection("HighScore").find(query).toArray(),
-  save: (data: any) => db.collection("HighScore").insertOne(data),
-};
+const HighScore = mongoose.model('HighScore', highScoreSchema);
 
 export default HighScore;

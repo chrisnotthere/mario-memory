@@ -1,5 +1,5 @@
 import express from "express";
-import { MongoClient } from "mongodb";
+import mongoose from "mongoose";
 import { PORT, MONGODB_URI } from "./config";
 import highScoresRouter from "./routes/highScores";
 import cors from "cors";
@@ -9,10 +9,10 @@ app.use(cors());
 app.use(express.json());
 
 // Connect to MongoDB
-MongoClient.connect(MONGODB_URI)
-  .then((client) => {
+mongoose
+  .connect(MONGODB_URI)
+  .then(() => {
     console.log("Successfully connected to MongoDB.");
-    app.locals.db = client.db();
   })
   .catch((error) => {
     console.error("Error connecting to MongoDB:", error);
