@@ -6,13 +6,15 @@ import cors from "cors";
 
 const app = express();
 
+const whitelist = ['https://chrisnotthere.github.io', 'http://localhost:3000']; // adjust the port as needed
 const corsOptions = {
-  origin: [
-    "https://chrisnotthere.github.io/mario-memory/",
-    "http://localhost:3000"
-  ],
-  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-  credentials: true,
+  origin: function (origin: string | undefined, callback: (err: Error | null, allow?: boolean) => void) {
+    if (whitelist.indexOf(origin as string) !== -1 || !origin) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  }
 };
 
 app.use(cors(corsOptions));
