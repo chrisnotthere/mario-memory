@@ -128,9 +128,9 @@ function Controller() {
   return (
     <div className="controller">
       <div className="button-container">
-        <button className="controller-button" onClick={mockEndGame}>
+        {/* <button className="controller-button" onClick={mockEndGame}>
           end game
-        </button>
+        </button> */}
         <div className="difficulty-container">
           <p>Select Difficulty</p>
           <div className="difficulty-foot">
