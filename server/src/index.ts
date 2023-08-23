@@ -5,7 +5,17 @@ import highScoresRouter from "./routes/highScores";
 import cors from "cors";
 
 const app = express();
-app.use(cors());
+
+const corsOptions = {
+  origin: [
+    "https://chrisnotthere.github.io/mario-memory/",
+    "http://localhost:3000"
+  ],
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+  credentials: true,
+};
+
+app.use(cors(corsOptions));
 app.use(express.json());
 
 // Connect to MongoDB
