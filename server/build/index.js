@@ -9,16 +9,20 @@ const config_1 = require("./config");
 const highScores_1 = __importDefault(require("./routes/highScores"));
 const cors_1 = __importDefault(require("cors"));
 const app = (0, express_1.default)();
+const whitelist = ['https://chrisnotthere.github.io', 'http://localhost:3000']; // adjust the port as needed
 const corsOptions = {
-    origin: [
-        "https://chrisnotthere.github.io/mario-memory/",
-        "http://localhost:3000"
-    ],
-    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-    credentials: true,
+    origin: function (origin, callback) {
+        if (whitelist.indexOf(origin) !== -1 || !origin) {
+            callback(null, true);
+        }
+        else {
+            callback(new Error('Not allowed by CORS'));
+        }
+    }
 };
 app.use((0, cors_1.default)(corsOptions));
 app.use(express_1.default.json());
+console.log(config_1.MONGODB_URI);
 // Connect to MongoDB
 mongoose_1.default
     .connect(config_1.MONGODB_URI)
