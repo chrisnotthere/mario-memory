@@ -46,7 +46,7 @@ function Controller() {
   const difficultyTimeLimits: Record<DifficultyLevel, number | null> = {
     easy: null, // No time limit
     medium: 50, // 50 seconds
-    hard: 50, // 50 seconds
+    hard: 40, // 40 seconds
   };
 
   const timeLimit = difficultyTimeLimits[difficulty];
