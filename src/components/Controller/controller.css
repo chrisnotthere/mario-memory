@@ -91,9 +91,19 @@
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  gap: 0.25rem; 
+  gap: 0.25rem;
+  color: #fff;
+  font-size: 1.25rem;
+  font-family: "SuperMario";
 }
 
+.stats-container span {
+  text-shadow:
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000;
+}
 
 /* media queries */
 
@@ -104,20 +114,49 @@
 
   .controller-button {
     height: 2rem;
-    font-size: 0.8rem;
+    font-size: 0.75rem;
   }
 
   .message {
     font-size: 1rem;
+  }
+
+  .difficulty-container {
+    gap: 0.1rem;
+    padding: 0.25rem;
+    font-size: 0.75rem;
+  }
+
+  .difficulty-button {
+    width: 3.5rem;
+    height: 1.75rem;
+  }
+
+  .controller-button {
+    width: 3.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .difficulty-icon {
+    margin-left: 0.1rem;
+    width: 25px;
+    height: 25px;
+  }
+
+  .stats-container {
+    font-size: 0.8rem;
   }
 }
 
 @media (max-width: 500px) {
   .controller {
     border-radius: 0;
-    padding: 0.5rem;
+    padding: 0.25rem;
     margin: 0;
     width: auto;
+    /* width: 100%; */
   }
 
   .message {

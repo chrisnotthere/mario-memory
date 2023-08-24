@@ -28,6 +28,10 @@
   font-size: 1.25rem;
 }
 
+.scoreboard-modal h2 {
+  font-size: 1.1rem;
+}
+
 .scoreboard-modal p {
   font-size: 0.8rem;
 }
@@ -113,4 +117,54 @@
   100% {
     transform: rotate(360deg);
   }
+}
+
+@media (max-width: 800px) {
+
+  .scoreboard-modal {
+    width: 220px;
+  }
+
+  .scores {
+    width: 225px;
+  }
+
+  .scoreboard-modal h1 {
+    font-size: 1rem;
+  }
+
+  .scoreboard-modal h2 {
+    font-size: 0.8rem;
+  }
+
+  .scoreboard-modal h4 {
+    font-size: 0.6rem;
+  }
+
+  .scoreboard-modal h5 {
+    font-size: 0.5rem;
+  }
+  
+  .scoreboard-modal p {
+    font-size: 0.6rem;
+  }
+
+  .score-row {
+    font-size: 0.8rem;
+  }
+
+  .pagination-controls {
+    font-size: 0.8rem;
+  }
+
+  .pagination-controls button {
+    padding: 0.5rem;
+  }
+
+  .high-score-toggle {
+    /* padding: 0.25rem; */
+    font-size: 0.75rem;
+  }
+
+
 }

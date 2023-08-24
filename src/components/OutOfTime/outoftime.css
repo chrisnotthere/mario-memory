@@ -23,9 +23,23 @@
 
 .out-of-time-modal h1 {
   font-size: 1.2rem;
-
 }
 
 .out-of-time-modal p {
   font-size: .7rem;
+}
+
+@media (max-width: 800px) {
+  .out-of-time-modal {
+    width: 200px;
+  }
+
+  .out-of-time-modal h1 {
+    font-size: 1rem;
+  }
+  
+  .out-of-time-modal p {
+    /* font-size: .5rem; */
+  }
+
 }
