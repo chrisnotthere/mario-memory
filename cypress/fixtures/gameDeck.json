@@ -1,0 +1,142 @@
+[
+  {
+      "id": 118,
+      "image": "https://chrisnotthere.github.io/mario-memory/assets/images/Wendy.png",
+      "name": "Wendy",
+      "facedUp": false,
+      "matched": false
+  },
+  {
+      "id": 18,
+      "image": "https://chrisnotthere.github.io/mario-memory/assets/images/Wendy.png",
+      "name": "Wendy",
+      "facedUp": false,
+      "matched": false
+  },
+  {
+      "id": 106,
+      "image": "https://chrisnotthere.github.io/mario-memory/assets/images/Lemmy.png",
+      "name": "Lemmy",
+      "facedUp": false,
+      "matched": false
+  },
+  {
+      "id": 6,
+      "image": "https://chrisnotthere.github.io/mario-memory/assets/images/Lemmy.png",
+      "name": "Lemmy",
+      "facedUp": false,
+      "matched": false
+  },
+  {
+      "id": 114,
+      "image": "https://chrisnotthere.github.io/mario-memory/assets/images/Shy Guy.png",
+      "name": "Shy Guy",
+      "facedUp": false,
+      "matched": false
+  },
+  {
+      "id": 14,
+      "image": "https://chrisnotthere.github.io/mario-memory/assets/images/Shy Guy.png",
+      "name": "Shy Guy",
+      "facedUp": false,
+      "matched": false
+  },
+  {
+      "id": 104,
+      "image": "https://chrisnotthere.github.io/mario-memory/assets/images/Koopa Troopa.png",
+      "name": "Koopa Troopa",
+      "facedUp": false,
+      "matched": false
+  },
+  {
+      "id": 4,
+      "image": "https://chrisnotthere.github.io/mario-memory/assets/images/Koopa Troopa.png",
+      "name": "Koopa Troopa",
+      "facedUp": false,
+      "matched": false
+  },
+  {
+      "id": 5,
+      "image": "https://chrisnotthere.github.io/mario-memory/assets/images/Lakitu.png",
+      "name": "Lakitu",
+      "facedUp": false,
+      "matched": false
+  },
+  {
+      "id": 105,
+      "image": "https://chrisnotthere.github.io/mario-memory/assets/images/Lakitu.png",
+      "name": "Lakitu",
+      "facedUp": false,
+      "matched": false
+  },
+  {
+      "id": 17,
+      "image": "https://chrisnotthere.github.io/mario-memory/assets/images/Wario.png",
+      "name": "Wario",
+      "facedUp": false,
+      "matched": false
+  },
+  {
+      "id": 117,
+      "image": "https://chrisnotthere.github.io/mario-memory/assets/images/Wario.png",
+      "name": "Wario",
+      "facedUp": false,
+      "matched": false
+  },
+  {
+      "id": 109,
+      "image": "https://chrisnotthere.github.io/mario-memory/assets/images/Ludwig.png",
+      "name": "Ludwig",
+      "facedUp": false,
+      "matched": false
+  },
+  {
+      "id": 9,
+      "image": "https://chrisnotthere.github.io/mario-memory/assets/images/Ludwig.png",
+      "name": "Ludwig",
+      "facedUp": false,
+      "matched": false
+  },
+  {
+      "id": 12,
+      "image": "https://chrisnotthere.github.io/mario-memory/assets/images/Peach.png",
+      "name": "Peach",
+      "facedUp": false,
+      "matched": false
+  },
+  {
+      "id": 112,
+      "image": "https://chrisnotthere.github.io/mario-memory/assets/images/Peach.png",
+      "name": "Peach",
+      "facedUp": false,
+      "matched": false
+  },
+  {
+      "id": 103,
+      "image": "https://chrisnotthere.github.io/mario-memory/assets/images/Iggy.png",
+      "name": "Iggy",
+      "facedUp": false,
+      "matched": false
+  },
+  {
+      "id": 3,
+      "image": "https://chrisnotthere.github.io/mario-memory/assets/images/Iggy.png",
+      "name": "Iggy",
+      "facedUp": false,
+      "matched": false
+  },
+  {
+      "id": 108,
+      "image": "https://chrisnotthere.github.io/mario-memory/assets/images/Luigi.png",
+      "name": "Luigi",
+      "facedUp": false,
+      "matched": false
+  },
+  {
+      "id": 8,
+      "image": "https://chrisnotthere.github.io/mario-memory/assets/images/Luigi.png",
+      "name": "Luigi",
+      "facedUp": false,
+      "matched": false
+  }
+]
