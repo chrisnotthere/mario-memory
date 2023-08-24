@@ -20,6 +20,7 @@ import {
 } from "../../features/memoryGame/gameSlice";
 import { useAppSelector } from "../../app/hooks";
 import "./controller.css";
+import "../../fonts/fonts.css";
 
 function Controller() {
   const dispatch = useDispatch();
@@ -32,7 +33,9 @@ function Controller() {
   const difficulty = useAppSelector(
     (state) => state.game.difficulty
   ) as DifficultyLevel;
-  const timeLimitReached = useAppSelector((state) => state.controller.timeLimitReached);
+  const timeLimitReached = useAppSelector(
+    (state) => state.controller.timeLimitReached
+  );
 
   const difficultyIcons: Record<DifficultyLevel, string> = {
     easy: "Star.png",
@@ -42,16 +45,42 @@ function Controller() {
 
   const difficultyTimeLimits: Record<DifficultyLevel, number | null> = {
     easy: null, // No time limit
-    medium: 55, // 55 seconds
-    hard: 65, // 65 seconds
+    medium: 50, // 50 seconds
+    hard: 50, // 50 seconds
   };
 
   const timeLimit = difficultyTimeLimits[difficulty];
 
+  // colours for super mario text
+  const colors = [
+    "#049cd8",
+    "#fbd000",
+    "#e52521",
+    "#43b047",
+    "#fbd000",
+    "#e52521",
+    "#43b047",
+    "#fbd000",
+    "#049cd8",
+    "#43b047",
+  ];
+
+  // render super mario text with alternating colours
+  const renderMarioText = (text: string) => {
+    return text.split("").map((char, index) => {
+      const color = colors[index % colors.length];
+      return (
+        <span key={index} style={{ color }}>
+          {char}
+        </span>
+      );
+    });
+  };
+
   // start and stop game timer
   useEffect(() => {
     let timerId: NodeJS.Timeout | undefined;
-  
+
     if (gameStarted && !gameFinished && !timeLimitReached) {
       timerId = setInterval(() => {
         // Check if the time limit has been reached
@@ -61,18 +90,25 @@ function Controller() {
           dispatch(setGameFinished(true)); // End the game
           return;
         }
-  
+
         dispatch(incrementTimer());
       }, 1000);
     }
-  
+
     // Cleanup function to clear the timer
     return () => {
       if (timerId) {
         clearInterval(timerId);
       }
     };
-  }, [gameStarted, gameTimer, gameFinished, timeLimitReached, timeLimit, dispatch]);
+  }, [
+    gameStarted,
+    gameTimer,
+    gameFinished,
+    timeLimitReached,
+    timeLimit,
+    dispatch,
+  ]);
 
   // reset game
   const handleReset = () => {
@@ -156,11 +192,13 @@ function Controller() {
       <div className="stats-container">
         <div className="timer">
           {timeLimit
-            ? ` Time remaining: ${timeLimit - gameTimer}`
-            : ``}
+            ? renderMarioText(` Time remaining: ${timeLimit - gameTimer}`)
+            : ""}
         </div>
-        <div className="move-counter">{movesTaken} moves</div>
-        <div className="timer">Score: {score}</div>
+        <div className="move-counter">
+          {renderMarioText(`${movesTaken} moves`)}
+        </div>
+        <div className="timer">{renderMarioText(`Score: ${score}`)}</div>
       </div>
     </div>
   );
