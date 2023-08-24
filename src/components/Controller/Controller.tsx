@@ -185,7 +185,7 @@ function Controller() {
             </div>
           </div>
         </div>
-        <button className="controller-button" onClick={handleReset}>
+        <button className="controller-button reset-button" onClick={handleReset}>
           Reset
         </button>
       </div>
@@ -198,7 +198,7 @@ function Controller() {
         <div className="move-counter">
           {renderMarioText(`${movesTaken} moves`)}
         </div>
-        <div className="timer">{renderMarioText(`Score: ${score}`)}</div>
+        <div className="score">{renderMarioText(`Score: ${score}`)}</div>
       </div>
     </div>
   );
