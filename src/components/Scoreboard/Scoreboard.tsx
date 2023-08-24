@@ -46,7 +46,6 @@ function Scoreboard() {
       difficulty: difficulty,
       date: new Date().toISOString(),
     };
-    // console.log("Sending game data:", gameData);
 
     fetch(`${process.env.REACT_APP_API_URL}/high-scores`, {
       method: "POST",
@@ -67,6 +66,7 @@ function Scoreboard() {
         setError(null);
       })
       .catch((error) => {
+        setLoading(false);
         console.error("Error sending game data:", error);
         setError("Something went wrong");
       });
@@ -75,7 +75,6 @@ function Scoreboard() {
   const fetchHighScores = (mode: "all-time" | "weekly") => {
     const endpoint =
       mode === "all-time" ? "/high-scores" : "/weekly-high-scores";
-    setLoading(true);
     fetch(
       `${process.env.REACT_APP_API_URL}${endpoint}?difficulty=${difficulty}`
     )
@@ -86,24 +85,23 @@ function Scoreboard() {
         return response.json();
       })
       .then((data) => {
-        // console.log(`${difficulty} high scores fetched successfully:`, data);
-        // console.log(mode);
         setHighScores(data);
         setLoading(false);
         setError(null);
       })
       .catch((error) => {
         console.error("Error fetching high scores:", error);
+        setLoading(false);
         setError("Something went wrong");
       });
   };
 
   const handleSubmit = () => {
-    // console.log("Submitting game data...");
     if (!name.trim()) {
       setNameError("Name cannot be empty");
       return;
     }
+    setLoading(true);
     setNameError(null);
     postHighscore(name, score, difficulty);
   };
