@@ -1,3 +1,5 @@
+// tests for general gameplay and interactions
+
 describe("Game start and basic interactions", () => {
   beforeEach(() => {
     cy.visit("");
