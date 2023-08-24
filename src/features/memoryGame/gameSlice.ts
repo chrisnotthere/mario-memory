@@ -107,9 +107,13 @@ export const gameSlice = createSlice({
           : card
       );
     },
+    // manually set the game deck, for testing purposes
+    setGameDeck: (state, action: PayloadAction<Card[]>) => {
+      state.gameDeck = action.payload;
+    },
   },
 });
 
-export const { setPendingFlip, newGame, matchAllCards, setDifficulty } = gameSlice.actions;
+export const { setPendingFlip, newGame, matchAllCards, setDifficulty, setGameDeck } = gameSlice.actions;
 
 export default gameSlice.reducer;
