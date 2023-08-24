@@ -1,13 +1,14 @@
 {
   "files": {
-    "main.css": "/mario-memory/static/css/main.f370669c.css",
-    "main.js": "/mario-memory/static/js/main.53a3281d.js",
+    "main.css": "/mario-memory/static/css/main.f8a9fd89.css",
+    "main.js": "/mario-memory/static/js/main.1aeca001.js",
+    "static/media/SuperMario.ttf": "/mario-memory/static/media/SuperMario.727519250ea444b6c5ce.ttf",
     "index.html": "/mario-memory/index.html",
-    "main.f370669c.css.map": "/mario-memory/static/css/main.f370669c.css.map",
-    "main.53a3281d.js.map": "/mario-memory/static/js/main.53a3281d.js.map"
+    "main.f8a9fd89.css.map": "/mario-memory/static/css/main.f8a9fd89.css.map",
+    "main.1aeca001.js.map": "/mario-memory/static/js/main.1aeca001.js.map"
   },
   "entrypoints": [
-    "static/css/main.f370669c.css",
-    "static/js/main.53a3281d.js"
+    "static/css/main.f8a9fd89.css",
+    "static/js/main.1aeca001.js"
   ]
 }
