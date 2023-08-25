@@ -1,6 +1,6 @@
 # Mario Memory Game
 
-This is a memory card flip game designed to provide a hands-on learning experience using Redux and TypeScript with React. The game's logic and state is managed using Redux, and the entire application is written in TypeScript.
+This is a memory card flip game designed to provide a hands-on learning experience using Redux, React, Typescript, MongoDB, and Express. The game's logic and state are managed using Redux, and the entire application is written in TypeScript. It features three difficulty levels, a highscore leaderboard, end-to-end testing with Cypress, and a mobile-friendly design.
 
 [View it live](https://chrisnotthere.github.io/mario-memory/)
 
@@ -8,9 +8,25 @@ This is a memory card flip game designed to provide a hands-on learning experien
 
 The main learning objectives of this project are:
 
-1. **Redux**: Gain an understanding of managing and manipulating state using Redux and its toolkit.
+1. **Redux**: Gain an understanding of managing and manipulating state using Redux Toolkit.
 
 2. **TypeScript**: Develop proficiency in writing React applications in TypeScript and appreciate the benefits of a statically typed language.
+
+3. **MongoDB**: Manage game data using a MongoDB database.
+
+4. **Express**: Implement a simple server using Express hosted on Heroku to read the database and create new high scores.
+
+5. **Cypress**: Develop skills in writing and implementing end-to-end tests using Cypress.
+
+
+## Features
+
+- **Difficulty Settings**: Players can choose between easy, medium, and hard difficulty levels. Medium and hard difficulties come with time limits, and the number of cards increases for each level.
+
+- **Leaderboard**: Track and display high scores with player names. Scores can be viewed as 'weekly' or 'all-time.'
+
+- **Mobile-Friendly**: Designed to be responsive and compatible with mobile devices.
+
 
 ## State Controlled by Redux
 
@@ -43,10 +59,20 @@ The `flipCardAndCheck` thunk is used asynchronously to handle the game's logic a
 
 This function also takes care of tracking game progress, such as starting the game, incrementing moves, and updating the game timer. It utilizes actions from both the `gameSlice` and `controllerSlice` to update the relevant state properties.
 
-## Future Plans
+## Backend Server
 
-In the future, the following enhancements are planned for this project:
+The game includes a backend server using Express hosted on Heroku. It reads from a MongoDB database to retrieve high scores and allows for the creation of new high scores.
 
-- Incorporate a database to store high scores, stats, and other game data.
-- Add an 'extreme' difficulty setting for an added challenge.
-- Implement a testing framework for unit and/or end-to-end testing.
+## End-to-End Testing
+
+End-to-end testing has been conducted using Cypress to validate various aspects of the game. The tests are divided into the following categories:
+
+ - Game Initialization: Ensure that the game loads with necessary controls (like timer and move counter).
+
+ - Card Interactions: Examine functionalities like card flipping, matching, non-matching behaviors, and game resetting.
+
+ - Difficulty Levels: Verify the selection of different difficulty levels, which affects the number of cards and time limits.
+
+ - Winning Scenario: Confirm the winning conditions, display congratulatory message, and present the correct number of moves.
+
+ - Score Calculation: Validate the correct calculation of scores based on the moves, remaining time, and selected difficulty.
